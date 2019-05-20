@@ -1,7 +1,8 @@
-package com.xiong.config.dataSource.jpaConfig;
+package com.xiong.config.dataSource.jpa.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -21,17 +22,17 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef="entityManagerFactoryFstblood",
-        transactionManagerRef="transactionManagerFstblood",
-        basePackages= { "com.xiong.entity.fstbloodEntity"}) //设置Repository所在位置
-public class FstbloodJpaConfig {
+        entityManagerFactoryRef="entityManagerFactoryDoublekill",
+        transactionManagerRef="transactionManagerDoublekill",
+        basePackages= { "com.xiong.dao.doublekill"}) //设置Repository所在位置
+public class DoublekillJpaConfig {
 
     /**
      * 注入 mysql数据源
      */
     @Autowired
-    @Qualifier("fstbloodDataSource")
-    private DataSource FstbloodDataSource;
+    @Qualifier("doublekillDataSource")
+    private DataSource DoublekillDataSource;
 
     /**
      * 注入JPA配置实体
@@ -57,14 +58,13 @@ public class FstbloodJpaConfig {
      * persistenceUnit  持久性单元的名称。 如果只建立一个EntityManagerFactory，你可以省略这个，但是如果在同一个应用程序中有多个，你应该给它们不同的名字
      * properties       标准JPA或供应商特定配置的通用属性。 这些属性覆盖构造函数中提供的任何值。
      */
-    @Primary
-    @Bean(name = "entityManagerFactoryFstblood")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryFstblood(EntityManagerFactoryBuilder builder) {
+    @Bean(name = "entityManagerFactoryDoublekill")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryDoublekill(EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(FstbloodDataSource)
+                .dataSource(DoublekillDataSource)
                 .properties(getVendorProperties())
-                .packages("com.xiong.entity.fstbloodEntity")
-                .persistenceUnit("FstbloodPersistenceUnit")
+                .packages("com.xiong.entity.doublekill")
+                .persistenceUnit("DoublekillPersistenceUnit")
                 .build();
     }
 
@@ -74,10 +74,9 @@ public class FstbloodJpaConfig {
      * @param builder
      * @return 实体管理器
      */
-    @Primary
-    @Bean(name = "entityManagerFstblood")
-    public EntityManager entityManagerFstblood(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactoryFstblood(builder).getObject().createEntityManager();
+    @Bean(name = "entityManagerDoublekill")
+    public EntityManager entityManagerDoublekill(EntityManagerFactoryBuilder builder) {
+        return entityManagerFactoryDoublekill(builder).getObject().createEntityManager();
     }
 
     /**
@@ -86,10 +85,9 @@ public class FstbloodJpaConfig {
      * @param builder
      * @return 事务管理器
      */
-    @Primary
-    @Bean(name = "transactionManagerFstblood")
-    public PlatformTransactionManager transactionManagerFstblood(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryFstblood(builder).getObject());
+    @Bean(name = "transactionManagerDoublekill")
+    public PlatformTransactionManager transactionManagerDoublekill(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(entityManagerFactoryDoublekill(builder).getObject());
     }
 
 }

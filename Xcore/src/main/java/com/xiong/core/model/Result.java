@@ -74,6 +74,13 @@ public class Result {
             return this;
         }
 
+        public Builder error(Exception e){
+            this.code = ERROR_CODE;
+            this.message = e.getMessage();
+            this.data = e;
+            return this;
+        }
+
         public Builder errorgoon(){
             this.code = ERROR_CODE_GOON;
             this.message = ERROR_MESSAGE_GOON;

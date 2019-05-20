@@ -27,6 +27,8 @@ public class DataSourceConfig {
     public DataSource dataSourceOne(){
         return DruidDataSourceBuilder.create().build();
     }
+
+
     @Bean(name = "doublekillDataSource")
     @ConfigurationProperties("spring.datasource.druid.doublekill")
     public DataSource dataSourceTwo(){
