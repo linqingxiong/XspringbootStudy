@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @Author Xiong
- * @Description //TODO
+ * @Description //web请求返回结果类
  * @Date 10:20 2019/3/1
  **/
 @Data

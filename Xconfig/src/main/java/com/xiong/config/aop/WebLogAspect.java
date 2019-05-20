@@ -15,8 +15,8 @@ import java.lang.reflect.Method;
 
 /**
  * @ClassName LogAspect
- * @Description TODO
- * @Author YuanMa
+ * @Description 打印web请求
+ * @Author xiong
  * @Date 2019/5/15 16:01
  * @Version 1.0
  **/

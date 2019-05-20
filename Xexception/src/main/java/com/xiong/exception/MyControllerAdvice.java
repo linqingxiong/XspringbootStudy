@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @ClassName MyControllerAdvice
  * @Description controller全局异常捕获
- * @Author YuanMa
+ * @Author xiong
  * @Date 2019/5/16 16:24
  * @Version 1.0
  **/
